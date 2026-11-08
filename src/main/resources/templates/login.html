@@ -2,36 +2,46 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LinkLab - Iniciar sesión</title>
-    <style>
-        body { font-family: Arial, sans-serif; background: #f4f6f8;
-               display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .card { background: #fff; padding: 32px; border-radius: 8px; width: 320px;
-                box-shadow: 0 2px 10px rgba(0,0,0,.1); }
-        input { width: 100%; padding: 10px; margin: 8px 0 16px; box-sizing: border-box; }
-        button { width: 100%; padding: 10px; background: #2563eb; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }
-        .error { color: #b91c1c; margin-bottom: 12px; }
-        .ok { color: #15803d; margin-bottom: 12px; }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
 </head>
-<body>
-<div class="card">
-    <h2>Iniciar sesión</h2>
+<body class="auth">
 
-    <div th:if="${param.error}" class="error">Correo o contraseña incorrectos.</div>
-    <div th:if="${param.logout}" class="ok">Cerraste sesión correctamente.</div>
-    <div th:if="${param.registrado}" class="ok">Cuenta creada. Ya puedes iniciar sesión.</div>
+<aside class="auth-brand">
+    <div class="logo"><span class="logo-icon">&gt;_</span><span class="logo-text">LinkLab</span></div>
+    <div class="brand-copy">
+        <span class="eyebrow">Simulador de enlace</span>
+        <h1>Modela la pérdida de paquetes con precisión.</h1>
+        <p>Analiza el comportamiento estadístico de tu enlace y compara escenarios en un solo lugar.</p>
+    </div>
+    <small>© LinkLab</small>
+</aside>
 
-    <form th:action="@{/login}" method="post">
-        <label>Correo</label>
-        <input type="email" name="username" required>
+<main class="auth-main">
+    <div class="top-action"><a class="btn-top" th:href="@{/registro}">Registrarse</a></div>
+    <div class="card">
+        <h2>Iniciar sesión</h2>
+        <p class="subtitle">Ingresa a tu laboratorio.</p>
 
-        <label>Contraseña</label>
-        <input type="password" name="password" required>
+        <div th:if="${param.error}" class="alert alert-error">Correo o contraseña incorrectos.</div>
+        <div th:if="${param.logout}" class="alert alert-ok">Cerraste sesión correctamente.</div>
+        <div th:if="${param.registrado}" class="alert alert-ok">Cuenta creada. Ya puedes iniciar sesión.</div>
 
-        <button type="submit">Entrar</button>
-    </form>
-    <p>¿No tienes cuenta? <a th:href="@{/registro}">Regístrate</a></p>
-</div>
+        <form th:action="@{/login}" method="post">
+            <label for="username">Correo</label>
+            <input id="username" type="email" name="username" placeholder="tu@correo.com" required>
+
+            <label for="password">Contraseña</label>
+            <input id="password" type="password" name="password" placeholder="••••••••" required>
+
+            <button type="submit" class="btn">Entrar</button>
+        </form>
+    </div>
+</main>
+
 </body>
 </html>
