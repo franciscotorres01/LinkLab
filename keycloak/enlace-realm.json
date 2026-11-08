@@ -1,0 +1,80 @@
+{
+  "realm": "enlace-realm",
+  "enabled": true,
+  "registrationAllowed": false,
+  "accessTokenLifespan": 300,
+  "roles": {
+    "realm": [
+      { "name": "analista", "description": "Define enlaces y lanza corridas" },
+      { "name": "observador", "description": "Consulta y valida corridas" }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "enlace-frontend",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": false,
+      "redirectUris": ["http://localhost:4200/*"],
+      "webOrigins": ["http://localhost:4200"],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "http://localhost:4200/*"
+      },
+      "protocolMappers": [
+        {
+          "name": "audience-enlace-api",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": {
+            "included.custom.audience": "enlace-api",
+            "access.token.claim": "true",
+            "id.token.claim": "false"
+          }
+        }
+      ]
+    },
+    {
+      "clientId": "enlace-test",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "protocolMappers": [
+        {
+          "name": "audience-enlace-api",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": {
+            "included.custom.audience": "enlace-api",
+            "access.token.claim": "true",
+            "id.token.claim": "false"
+          }
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "analista1",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Ana",
+      "lastName": "Analista",
+      "email": "analista1@linklab.com",
+      "credentials": [{ "type": "password", "value": "analista123", "temporary": false }],
+      "realmRoles": ["analista"]
+    },
+    {
+      "username": "observador1",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Omar",
+      "lastName": "Observador",
+      "email": "observador1@linklab.com",
+      "credentials": [{ "type": "password", "value": "observador123", "temporary": false }],
+      "realmRoles": ["observador"]
+    }
+  ]
+}
