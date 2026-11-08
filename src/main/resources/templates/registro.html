@@ -2,39 +2,51 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LinkLab - Registro</title>
-    <style>
-        body { font-family: Arial, sans-serif; background: #f4f6f8;
-            display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .card { background: #fff; padding: 32px; border-radius: 8px; width: 320px;
-            box-shadow: 0 2px 10px rgba(0,0,0,.1); }
-        input { width: 100%; padding: 10px; margin: 8px 0 4px; box-sizing: border-box; }
-        button { width: 100%; padding: 10px; margin-top: 12px; background: #2563eb; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }
-        .error { color: #b91c1c; font-size: 13px; margin-bottom: 8px; }
-        a { color: #2563eb; }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
 </head>
-<body>
-<div class="card">
-    <h2>Crear cuenta</h2>
+<body class="auth">
 
-    <form th:action="@{/registro}" th:object="${form}" method="post">
-        <label>Correo</label>
-        <input type="email" th:field="*{email}">
-        <div class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+<aside class="auth-brand">
+    <div class="logo"><span class="logo-icon">&gt;_</span><span class="logo-text">LinkLab</span></div>
+    <div class="brand-copy">
+        <span class="eyebrow">Simulador de enlace</span>
+        <h1>Crea tu cuenta y empieza a simular</h1>
+        <p>Guarda escenarios, ejecuta simulaciones y revisa tu historial cuando quieras</p>
+    </div>
+    <small>© LinkLab</small>
+</aside>
 
-        <label>Contraseña</label>
-        <input type="password" th:field="*{password}">
-        <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+<main class="auth-main">
+    <div class="top-action"><a class="btn-top" th:href="@{/login}">Iniciar sesión</a></div>
+    <div class="card">
+        <h2>Crear cuenta</h2>
+        <p class="subtitle">Solo toma un minuto.</p>
 
-        <label>Confirmar contraseña</label>
-        <input type="password" th:field="*{confirmPassword}">
-        <div class="error" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></div>
+        <form th:action="@{/registro}" th:object="${form}" method="post">
+            <label for="email">Correo</label>
+            <input id="email" type="email" th:field="*{email}" placeholder="tu@correo.com"
+                   th:classappend="${#fields.hasErrors('email')} ? 'is-invalid'">
+            <div class="field-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
 
-        <button type="submit">Registrarme</button>
-    </form>
+            <label for="password">Contraseña</label>
+            <input id="password" type="password" th:field="*{password}" placeholder="Mínimo 8 caracteres"
+                   th:classappend="${#fields.hasErrors('password')} ? 'is-invalid'">
+            <div class="field-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
 
-    <p>¿Ya tienes cuenta? <a th:href="@{/login}">Inicia sesión</a></p>
-</div>
+            <label for="confirmPassword">Confirmar contraseña</label>
+            <input id="confirmPassword" type="password" th:field="*{confirmPassword}" placeholder="Repite tu contraseña"
+                   th:classappend="${#fields.hasErrors('confirmPassword')} ? 'is-invalid'">
+            <div class="field-error" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></div>
+
+            <button type="submit" class="btn">Registrarme</button>
+        </form>
+    </div>
+</main>
+
 </body>
 </html>

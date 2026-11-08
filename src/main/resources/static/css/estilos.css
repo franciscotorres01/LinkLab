@@ -1,0 +1,157 @@
+:root {
+    --navy: #0f1233;
+    --navy-2: #1a1d4a;
+    --primary: #6c5ce0;
+    --primary-dark: #5a49c9;
+    --primary-soft: #eeebfc;
+    --bg: #f6f7fb;
+    --surface: #ffffff;
+    --border: #e6e8f0;
+    --text: #111430;
+    --muted: #6b7090;
+    --success: #2f9e6b;
+    --success-soft: #e6f5ee;
+    --danger: #d64545;
+    --danger-soft: #fdecec;
+    --radius: 12px;
+    --font: "Plus Jakarta Sans", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: var(--font);
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+}
+
+.auth {
+    display: grid;
+    grid-template-columns: minmax(320px, 5fr) 7fr;
+    min-height: 100vh;
+}
+
+.auth-brand {
+    background: linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: #fff;
+    padding: 40px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: var(--primary);
+    display: grid; place-items: center;
+    font-weight: 700; font-size: 14px;
+}
+.logo-text { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+
+.eyebrow {
+    display: inline-block;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: #b7aef5;
+    border-bottom: 1px solid #b7aef5;
+    padding-bottom: 4px;
+}
+.brand-copy h1 {
+    font-size: 36px; line-height: 1.15;
+    letter-spacing: -0.03em;
+    margin: 18px 0 14px;
+}
+.brand-copy p { color: #aab0d6; line-height: 1.6; max-width: 380px; margin: 0; }
+.auth-brand small { color: #7f86b5; }
+
+.auth-main {
+    display: flex; align-items: center; justify-content: center;
+    padding: 32px;
+}
+
+.card {
+    width: 100%; max-width: 420px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px;
+    box-shadow: 0 8px 30px rgba(15, 18, 51, 0.06);
+}
+.card h2 { margin: 0 0 6px; font-size: 26px; letter-spacing: -0.02em; }
+.subtitle { margin: 0 0 24px; color: var(--muted); font-size: 14px; }
+
+label {
+    display: block;
+    font-size: 13px; font-weight: 600;
+    margin: 16px 0 6px;
+}
+input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 12px 14px;
+    font: inherit; font-size: 14px;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+}
+input::placeholder { color: #a3a8c4; }
+input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px var(--primary-soft);
+}
+input.is-invalid { border-color: var(--danger); }
+input.is-invalid:focus { box-shadow: 0 0 0 4px var(--danger-soft); }
+
+.btn {
+    width: 100%;
+    margin-top: 24px;
+    padding: 13px;
+    font: inherit; font-size: 14px; font-weight: 600;
+    color: #fff;
+    background: var(--primary);
+    border: 0; border-radius: 10px;
+    cursor: pointer;
+    transition: background .15s, transform .05s;
+}
+.btn:hover { background: var(--primary-dark); }
+.btn:active { transform: translateY(1px); }
+
+.alert {
+    font-size: 13px; font-weight: 500;
+    padding: 10px 14px; border-radius: 10px;
+    margin-bottom: 8px;
+}
+.alert-error { background: var(--danger-soft); color: var(--danger); }
+.alert-ok { background: var(--success-soft); color: var(--success); }
+
+.field-error { color: var(--danger); font-size: 12px; margin-top: 6px; }
+
+.alt-link { margin: 22px 0 0; text-align: center; font-size: 14px; color: var(--muted); }
+.alt-link a { color: var(--primary); font-weight: 600; text-decoration: none; }
+.alt-link a:hover { text-decoration: underline; }
+
+@media (max-width: 860px) {
+    .auth { grid-template-columns: 1fr; }
+    .auth-brand { display: none; }
+    .card { padding: 28px 22px; }
+}
+/* Botón superior derecho (login / registro) */
+.auth-main { position: relative; }
+.top-action {
+    position: absolute; top: 24px; right: 32px;
+    display: flex; align-items: center; gap: 12px;
+    font-size: 14px; color: var(--muted);
+}
+.btn-top {
+    padding: 10px 20px; font-size: 13px; font-weight: 600;
+    color: #fff; background: var(--primary);
+    border: 0; border-radius: 10px;
+    text-decoration: none; transition: background .15s;
+}
+.btn-top:hover { background: var(--primary-dark); }
+@media (max-width: 520px) { .top-action span { display: none; } .top-action { right: 16px; } }
