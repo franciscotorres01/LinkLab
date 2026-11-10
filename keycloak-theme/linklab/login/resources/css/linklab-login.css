@@ -1,0 +1,306 @@
+/* LinkLab - login de Keycloak (réplica del login de Angular) */
+
+:root {
+    --ll-navy-1: #10113a;
+    --ll-navy-2: #1b1b52;
+    --ll-primary: #6c5ce0;
+    --ll-primary-dark: #5a49d0;
+    --ll-ink: #10113a;
+    --ll-muted: #6b7194;
+    --ll-border: #dfe3ee;
+    --ll-bg: #f6f7fb;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    color: var(--ll-ink);
+    background: var(--ll-bg);
+    -webkit-font-smoothing: antialiased;
+}
+
+.ll-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    min-height: 100vh;
+}
+
+/* ---------- Panel izquierdo ---------- */
+
+.ll-brand {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50px 60px;
+    color: #fff;
+    background: linear-gradient(160deg, var(--ll-navy-1) 0%, var(--ll-navy-2) 100%);
+}
+
+.ll-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.ll-logo__mark {
+    display: grid;
+    place-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    background: var(--ll-primary);
+    color: #fff;
+    font-family: ui-monospace, Consolas, 'Courier New', monospace;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0;
+}
+
+.ll-hero {
+    max-width: 640px;
+}
+
+.ll-eyebrow {
+    display: inline-block;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #8f8bf0;
+    color: #a9a5f5;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.ll-hero h1 {
+    margin: 22px 0 18px;
+    color: #fff;
+    font-size: clamp(34px, 3.4vw, 46px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+}
+
+.ll-hero p {
+    max-width: 440px;
+    margin: 0;
+    color: #b4b3e3;
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+.ll-copy {
+    color: #8887c8;
+    font-size: 16px;
+}
+
+/* ---------- Panel derecho ---------- */
+
+.ll-main {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    background: var(--ll-bg);
+}
+
+.ll-register {
+    position: absolute;
+    top: 31px;
+    right: 37px;
+    display: inline-flex;
+    align-items: center;
+    height: 46px;
+    padding: 0 25px;
+    border-radius: 10px;
+    background: var(--ll-primary);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.15s;
+}
+
+.ll-register:hover {
+    background: var(--ll-primary-dark);
+}
+
+.ll-card {
+    width: 100%;
+    max-width: 523px;
+    padding: 44px 45px 45px;
+    background: #fff;
+    border: 1px solid #eceef5;
+    border-radius: 22px;
+    box-shadow: 0 10px 40px rgba(30, 30, 80, 0.08);
+}
+
+.ll-card h2 {
+    margin: 0;
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -1px;
+}
+
+.ll-sub {
+    margin: 8px 0 28px;
+    color: var(--ll-muted);
+    font-size: 17px;
+}
+
+.ll-field {
+    margin-bottom: 22px;
+}
+
+.ll-field label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--ll-ink);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.ll-field input {
+    width: 100%;
+    height: 54px;
+    padding: 0 18px;
+    border: 1px solid var(--ll-border);
+    border-radius: 10px;
+    background: #fff;
+    color: var(--ll-ink);
+    font: inherit;
+    font-size: 17px;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.ll-field input::placeholder {
+    color: #9aa0b8;
+}
+
+.ll-field input:focus {
+    border-color: var(--ll-primary);
+    box-shadow: 0 0 0 3px rgba(108, 92, 224, 0.18);
+}
+
+.ll-field--error input {
+    border-color: #e5484d;
+}
+
+.ll-submit {
+    width: 100%;
+    height: 54px;
+    margin-top: 8px;
+    border: 0;
+    border-radius: 12px;
+    background: var(--ll-primary);
+    color: #fff;
+    font: inherit;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.ll-submit:hover {
+    background: var(--ll-primary-dark);
+}
+
+.ll-submit:disabled {
+    opacity: 0.7;
+    cursor: default;
+}
+
+.ll-remember {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: -6px 0 14px;
+    color: var(--ll-muted);
+    font-size: 15px;
+}
+
+.ll-remember input {
+    width: auto;
+    accent-color: var(--ll-primary);
+}
+
+.ll-links {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.ll-links a {
+    color: var(--ll-primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.ll-links a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Mensajes ---------- */
+
+.ll-alert {
+    margin: 0 0 22px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: #eef0fb;
+    color: var(--ll-navy-2);
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+.ll-alert--error {
+    background: #fdecec;
+    color: #b42318;
+}
+
+.ll-alert--success {
+    background: #e8f7ee;
+    color: #067647;
+}
+
+.ll-alert--warning {
+    background: #fff4e0;
+    color: #93560a;
+}
+
+/* ---------- Pantallas pequeñas ---------- */
+
+@media (max-width: 900px) {
+    .ll-shell {
+        grid-template-columns: 1fr;
+    }
+
+    .ll-brand {
+        display: none;
+    }
+
+    .ll-register {
+        top: 20px;
+        right: 20px;
+    }
+
+    .ll-main {
+        padding: 88px 20px 32px;
+    }
+
+    .ll-card {
+        padding: 32px 24px;
+    }
+}

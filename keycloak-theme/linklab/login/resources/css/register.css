@@ -1,0 +1,23 @@
+.ll-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.ll-error {
+    display: block;
+    margin-top: 6px;
+    color: #b42318;
+    font-size: 14px;
+}
+
+.ll-links {
+    color: var(--ll-muted);
+}
+
+@media (max-width: 600px) {
+    .ll-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}

@@ -1,0 +1,46 @@
+body {
+  background: linear-gradient(160deg, #10113a 0%, #1b1b52 100%) !important;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+[class*="c-login__main"] {
+  background: #fff !important;
+  border-radius: 22px !important;
+  box-shadow: 0 10px 40px rgba(30, 30, 80, 0.15) !important;
+}
+
+[class*="c-login__main"] * {
+  color: #10113a;
+}
+
+h1, #kc-page-title {
+  font-weight: 800 !important;
+  letter-spacing: -1px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  background: #fff !important;
+  color: #10113a !important;
+  border-radius: 10px !important;
+}
+
+#kc-login,
+[class*="c-button"][class*="m-primary"] {
+  background: #6c5ce0 !important;
+  border: 0 !important;
+  border-radius: 12px !important;
+  color: #fff !important;
+  font-weight: 700;
+  padding: 14px !important;
+}
+
+#kc-login:hover,
+[class*="c-button"][class*="m-primary"]:hover {
+  background: #5a49d0 !important;
+}
+
+a {
+  color: #6c5ce0 !important;
+}
