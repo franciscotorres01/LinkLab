@@ -1,4 +1,8 @@
 <h1>LinkLab</h1>
 <p>Usuario: {{ auth.nombre() }}</p>
 <p>Roles: {{ auth.roles().join(', ') }}</p>
+
+<button (click)="ping()">Probar ping</button>
+<p>{{ respuestaPing() }}</p>
+
 <button (click)="auth.logout()">Cerrar sesión</button>
