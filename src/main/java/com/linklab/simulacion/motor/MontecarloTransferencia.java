@@ -1,10 +1,6 @@
-package com.Linklab.simulacion.motor;
+package com.linklab.simulacion.motor;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * Montecarlo (RF-03): corre N transferencias de un archivo y estima cuántas retransmisiones

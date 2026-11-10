@@ -1,4 +1,4 @@
-package com.Linklab.simulacion.motor;
+package com.linklab.simulacion.motor;
 
 import java.util.Random;
 

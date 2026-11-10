@@ -1,4 +1,4 @@
-package com.Linklab.simulacion.motor;
+package com.linklab.simulacion.motor;
 
 /**
  * Parámetros del enlace punto a punto (RF-01).
