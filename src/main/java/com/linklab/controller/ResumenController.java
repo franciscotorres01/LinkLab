@@ -1,4 +1,4 @@
 package com.linklab.controller;
 
-public class Pingcontroller {
+public class ResumenController {
 }

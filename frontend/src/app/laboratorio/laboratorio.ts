@@ -14,7 +14,7 @@ export class Laboratorio {
   respuestaPing = signal('');
 
   ping() {
-    this.http.get('http://localhost:8082/api/ping', { responseType: 'text' }).subscribe({
+    this.http.get('http://localhost:8081/api/ping', { responseType: 'text' }).subscribe({
       next: (r) => this.respuestaPing.set('OK: ' + r),
       error: (e) => this.respuestaPing.set('Error ' + e.status),
     });
