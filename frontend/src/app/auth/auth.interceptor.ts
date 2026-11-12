@@ -3,7 +3,7 @@ import { inject } from '@angular/core';
 import { from, switchMap } from 'rxjs';
 import { AuthService } from './auth.service';
 
-const URLS_API = ['http://localhost:8082'];
+const URLS_API = ['http://localhost:8081', 'http://localhost:8082'];
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   if (!URLS_API.some(u => req.url.startsWith(u))) return next(req);

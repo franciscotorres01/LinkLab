@@ -1,0 +1,49 @@
+<aside class="sidebar">
+  <div class="marca">
+    <div class="logo">&gt;_</div>
+    <span>LinkLab</span>
+  </div>
+
+  <p class="grupo">LABORATORIO</p>
+  <nav>
+    @for (item of menu; track item.ruta) {
+      <a class="item" [routerLink]="['/laboratorio', item.ruta]" routerLinkActive="activo">
+        <svg viewBox="0 0 24 24"><path [attr.d]="item.icono" /></svg>
+        {{ item.etiqueta }}
+      </a>
+    }
+  </nav>
+
+  <div class="espacio"></div>
+
+  <a class="item" routerLink="/laboratorio/configuracion" routerLinkActive="activo">
+    <svg viewBox="0 0 24 24"><path [attr.d]="iconoConfig" /></svg>
+    Configuración
+  </a>
+
+  <div class="usuario">
+    <div class="avatar">{{ iniciales() }}</div>
+    <div class="datos">
+      <strong>{{ auth.nombreCompleto() }}</strong>
+      <small>{{ rol() }}</small>
+    </div>
+    <button class="salir" (click)="auth.logout()" title="Cerrar sesión">
+      <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4 M16 17l5-5-5-5 M21 12H9" /></svg>
+    </button>
+  </div>
+</aside>
+
+<div class="principal">
+  <header class="cabecera">
+    <div class="migas">
+      <span>Laboratorio</span>
+      <span class="sep">›</span>
+      <strong>{{ seccion() }}</strong>
+    </div>
+    <div class="estado"><i></i> Todos los servicios operativos</div>
+  </header>
+
+  <main class="contenido">
+    <router-outlet />
+  </main>
+</div>

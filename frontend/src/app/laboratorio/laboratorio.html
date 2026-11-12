@@ -1,8 +1,106 @@
-<h1>LinkLab</h1>
-<p>Usuario: {{ auth.nombre() }}</p>
-<p>Roles: {{ auth.roles().join(', ') }}</p>
+<p class="etiqueta">CENTRO DE CONTROL</p>
+<h1>Vista general</h1>
+<p class="sub">Actividad reciente y estado del laboratorio.</p>
 
-<button (click)="ping()">Probar ping</button>
-<p>{{ respuestaPing() }}</p>
+@if (error()) {
+  <div class="aviso">
+    No se pudo cargar el resumen. ¿Está el backend encendido?
+    <button (click)="cargar()">Reintentar</button>
+  </div>
+}
 
-<button (click)="auth.logout()">Cerrar sesión</button>
+@if (resumen(); as r) {
+  <section class="tarjetas">
+    <article class="tarjeta">
+      <div class="icono morado">
+        <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2" /></svg>
+      </div>
+      <div>
+        <small>Simulaciones totales</small>
+        <strong>{{ r.simulacionesTotales }}</strong>
+        <small class="pie">Guardadas en el historial</small>
+      </div>
+    </article>
+
+    <article class="tarjeta">
+      <div class="icono verde">
+        <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5 M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5" /></svg>
+      </div>
+      <div>
+        <small>Escenarios probados</small>
+        <strong>{{ r.escenariosProbados }}</strong>
+        <small class="pie">de {{ r.escenariosDisponibles }} disponibles</small>
+      </div>
+    </article>
+
+    <article class="tarjeta">
+      <div class="icono naranja">
+        <svg viewBox="0 0 24 24"><path d="M17 3l4 4-4 4 M3 7h18 M7 21l-4-4 4-4 M21 17H3" /></svg>
+      </div>
+      <div>
+        <small>Pérdida promedio</small>
+        <strong>{{ r.perdidaPromedio }}%</strong>
+        <small class="pie">Entre todas las pruebas</small>
+      </div>
+    </article>
+  </section>
+
+  <section class="fila">
+    <article class="panel">
+      <header>
+        <div>
+          <h2>Actividad reciente</h2>
+          <small>Últimas simulaciones del laboratorio</small>
+        </div>
+        <a routerLink="/laboratorio/historial" class="enlace">Ver historial ›</a>
+      </header>
+
+      @for (a of r.actividad; track a.id) {
+        <div class="registro">
+          <div class="check">✓</div>
+          <div class="info">
+            <strong>{{ a.escenario }}</strong>
+            <small>{{ a.fecha | date: 'dd/MM/yyyy HH:mm' }}</small>
+          </div>
+          <div class="cifra">
+            <strong>{{ fmt(a.intentos) }}</strong>
+            <small>intentos</small>
+          </div>
+        </div>
+      } @empty {
+        <div class="vacio">
+          <p>Aún no hay simulaciones guardadas.</p>
+          <!-- TEMPORAL -->
+          <button (click)="cargarDemo()">Cargar datos de ejemplo</button>
+        </div>
+      }
+    </article>
+
+    <article class="panel">
+      <header>
+        <div>
+          <h2>Acceso rápido</h2>
+          <small>Continúa con tu análisis</small>
+        </div>
+      </header>
+
+      <a class="atajo" routerLink="/laboratorio/simulaciones">
+        <div class="icono morado chico"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z" /></svg></div>
+        <div><strong>Nueva simulación</strong><small>Configura y ejecuta una prueba</small></div>
+        <span>›</span>
+      </a>
+      <a class="atajo" routerLink="/laboratorio/comparar">
+        <div class="icono morado chico"><svg viewBox="0 0 24 24"><path d="M17 3l4 4-4 4 M3 7h18 M7 21l-4-4 4-4 M21 17H3" /></svg></div>
+        <div><strong>Comparar resultados</strong><small>Analiza ejecuciones guardadas</small></div>
+        <span>›</span>
+      </a>
+      <a class="atajo" routerLink="/laboratorio/escenarios">
+        <div class="icono morado chico"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5 M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5" /></svg></div>
+        <div><strong>Explorar escenarios</strong><small>{{ r.escenariosDisponibles }} configuraciones disponibles</small></div>
+        <span>›</span>
+      </a>
+    </article>
+  </section>
+} @else if (cargando()) {
+  <p class="sub">Cargando…</p>
+}

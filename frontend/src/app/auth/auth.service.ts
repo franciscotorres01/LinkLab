@@ -11,6 +11,7 @@ export class AuthService {
 
   readonly autenticado = signal(false);
   readonly nombre = signal('');
+  readonly nombreCompleto = signal('');
   readonly roles = signal<string[]>([]);
   readonly esAnalista = computed(() => this.roles().includes('analista'));
   readonly esObservador = computed(() => this.roles().includes('observador'));
@@ -24,6 +25,7 @@ export class AuthService {
     if (ok) {
       const t = this.keycloak.tokenParsed as any;
       this.nombre.set(t?.preferred_username ?? '');
+      this.nombreCompleto.set(t?.name ?? t?.preferred_username ?? '');
       this.roles.set(t?.realm_access?.roles ?? []);
     }
   }
@@ -37,7 +39,7 @@ export class AuthService {
   }
 
   logout() {
-    return this.keycloak.logout({ redirectUri: window.location.origin + '/laboratorio' });
+    return this.keycloak.logout({ redirectUri: window.location.origin });
   }
 
   async tokenVigente(): Promise<string | undefined> {
