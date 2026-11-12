@@ -21,7 +21,8 @@ export const routes: Routes = [
       {
         path: 'simulaciones',
         data: { titulo: 'Simulaciones' },
-        loadComponent: () => import('./laboratorio/pendiente').then(m => m.Pendiente),
+        loadComponent: () =>
+          import('./simulacion/simulacion.component').then(m => m.SimulacionComponent),
       },
       {
         path: 'comparar',
