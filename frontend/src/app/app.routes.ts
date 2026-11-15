@@ -16,7 +16,8 @@ export const routes: Routes = [
       {
         path: 'escenarios',
         data: { titulo: 'Escenarios' },
-        loadComponent: () => import('./laboratorio/pendiente').then(m => m.Pendiente),
+        loadComponent: () =>
+          import('./laboratorio/escenarios.component').then(m => m.EscenariosComponent),
       },
       {
         path: 'simulaciones',
