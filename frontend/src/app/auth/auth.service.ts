@@ -1,6 +1,7 @@
 import { Injectable, signal, computed } from '@angular/core';
 import Keycloak from 'keycloak-js';
 
+
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private readonly keycloak = new Keycloak({
@@ -12,6 +13,7 @@ export class AuthService {
   readonly autenticado = signal(false);
   readonly nombre = signal('');
   readonly nombreCompleto = signal('');
+  readonly correo = signal('');
   readonly roles = signal<string[]>([]);
   readonly esAnalista = computed(() => this.roles().includes('analista'));
   readonly esObservador = computed(() => this.roles().includes('observador'));
@@ -26,6 +28,7 @@ export class AuthService {
       const t = this.keycloak.tokenParsed as any;
       this.nombre.set(t?.preferred_username ?? '');
       this.nombreCompleto.set(t?.name ?? t?.preferred_username ?? '');
+      this.correo.set(t?.email ?? '');
       this.roles.set(t?.realm_access?.roles ?? []);
     }
   }

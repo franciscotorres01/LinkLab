@@ -40,7 +40,8 @@ export const routes: Routes = [
       {
         path: 'configuracion',
         data: { titulo: 'Configuración' },
-        loadComponent: () => import('./laboratorio/pendiente').then(m => m.Pendiente),
+        loadComponent: () =>
+          import('./laboratorio/configuracion.component').then(m => m.ConfiguracionComponent),
       },
     ],
   },
