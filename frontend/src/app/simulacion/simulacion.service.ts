@@ -12,6 +12,18 @@ export interface ParametrosSimulacion {
   semilla: number;
 }
 
+export interface ParametrosSimulacion {
+  algoritmo: string;
+  probabilidadPerdida: number;
+  tamanoPaqueteBytes: number;
+  rttMs: number;
+  repeticiones: number;
+  tamanoArchivoBytes: number;
+  semilla: number;
+  escenarioId?: string;
+  escenarioNombre?: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class SimulacionService {
   private http = inject(HttpClient);

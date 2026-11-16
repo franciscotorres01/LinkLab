@@ -28,12 +28,14 @@ export const routes: Routes = [
       {
         path: 'comparar',
         data: { titulo: 'Comparar' },
-        loadComponent: () => import('./laboratorio/pendiente').then(m => m.Pendiente),
+        loadComponent: () =>
+          import('./laboratorio/comparar.component').then(m => m.CompararComponent),
       },
       {
         path: 'historial',
         data: { titulo: 'Historial' },
-        loadComponent: () => import('./laboratorio/pendiente').then(m => m.Pendiente),
+        loadComponent: () =>
+          import('./laboratorio/historial.component').then(m => m.HistorialComponent),
       },
       {
         path: 'configuracion',
@@ -42,11 +44,11 @@ export const routes: Routes = [
       },
     ],
   },
-  { path: '**', redirectTo: 'laboratorio' },
   {
     path: 'simulador',
     canActivate: [authGuard],
     loadComponent: () =>
       import('./simulacion/simulacion.component').then(m => m.SimulacionComponent),
   },
+  { path: '**', redirectTo: 'laboratorio' },
 ];

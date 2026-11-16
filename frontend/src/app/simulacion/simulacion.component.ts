@@ -624,6 +624,8 @@ export class SimulacionComponent {
     const peticion: ParametrosSimulacion = {
       ...this.form,
       tamanoArchivoBytes: Math.min(this.form.tamanoArchivoBytes, maxArchivo),
+      escenarioId: this.escenarioId(),
+      escenarioNombre: this.nombreEscenario(),
     };
 
     const t0 = performance.now();
